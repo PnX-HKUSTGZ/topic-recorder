@@ -18,6 +18,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(ament_cmake_auto REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(yaml-cpp REQUIRED)
 ament_auto_find_build_dependencies()
 
 ###########
@@ -28,10 +29,12 @@ ament_auto_add_library(${PROJECT_NAME} SHARED src/topic_recorder_node.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${OpenCV_INCLUDE_DIRS}
+    ${YAML_CPP_INCLUDE_DIR}
 )
 
 target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
+    ${YAML_CPP_LIBRARIES}
 )
 
 rclcpp_components_register_node(${PROJECT_NAME}
